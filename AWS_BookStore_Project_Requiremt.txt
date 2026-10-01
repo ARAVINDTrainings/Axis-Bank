@@ -1,0 +1,83 @@
+The Following APP is a BookStore
+
+It is build over PHP programming language
+
+BookStore  Application Steps
+-------------------------------
+1)As its a web application we need web Runtime,
+  
+  > Install Apache webserver
+
+    > yum install httpd -y
+
+  > We need PHP for rendering Application
+  
+    > yum install php -y
+
+  > Dependencies for Application
+   
+    > yum install php-mysql -y
+
+  > Install Git to clone code from Git repo
+  
+    > yum install git -y
+
+  > clone application code to /var/www/html
+  
+    > git clone https://github.com/ARCDevopsAWS/Bookstore-Php.git  /var/www/html
+
+  > My Application needs Database to store Books info like Title,Author & Price
+  
+    > Setup an RDS instance
+
+  > Update the RDS instance - DNS Endpoint ,Username & Password in /var/www/html/php/db.php in line 4,5,6
+
+  Now you able to see your Application Bookstore
+
+  > As an AWS Architect  ,setup following best practices for my Application 
+
+  > I want best Security Practise for my Application Architecture
+
+
+     > I want everything to be running in PRIVATE SUBNETS
+           > My Application Servers (Public subnet)
+
+           > My Database servers   (Private subnet)
+
+     > Client needs security from ADMINISTRATIVE perspective
+     
+           > BASTION , NAT
+
+     > Though my Application and DB are in PRIVATE infra when the END-USER wants to access my application they should be 
+        accessing from WWW i.e, INTERNET
+
+           >  END-USER should access the application though its in private
+
+     >  For the above application implement HIGH AVAILABILITY
+     
+           > At any point of time ,i shouldn't be having DOWNTIME
+
+     >  For the above application implement FAULT TOLERANCE
+     
+           > Ability to heal itself if the things go wrong
+
+           > For Application ,If i Stop/Terminate my webserver they should automatically setup the entire application and also retrieve  data from DB.
+
+     >  Setup Scalability for Book Store  Application
+
+           >When CPU is beyond 90% ,then add an instance with Bookstore application 
+
+           >When cpu is less than 10 % then remove an instance
+
+      CUSTOMER END GOAL
+      ------------------
+       
+      >  Once the product is hosted on AWS ,it should have following characteristics 
+
+         > HIGHLY SECURED
+
+         > HIGHLY AVAILABLE
+
+         > FAULT TOLERANT
+
+         > SCALABLE 
