@@ -1,0 +1,48 @@
+vi deployhttpd.yaml
+--------------------
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apachedeployment
+
+spec:
+  replicas: 3
+
+  selector:
+    matchLabels:
+      app: apache
+
+  template:
+    metadata:
+      labels:
+        app: apache
+
+    spec:
+      containers:
+        - name: apache-container
+          image: httpd
+          ports:
+            - containerPort: 80
+
+Vi service.yaml
+--------------
+
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: apacheservice
+
+spec:
+  ports:
+    - port: 80            #serviceport
+      targetPort: 80      #containerport
+
+  selector:
+    app: apache           #should match with deployment file label
+
+  type: LoadBalancer      #specifies the service type
+
+
+
